@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'Help Elephants in Burma',
     image: '/images/elephant.png',
     description:
@@ -12,9 +11,9 @@ const products = [
     donationGoal: 4500,
     percentageDonation: 100,
     numReviews: 12,
+    rating: 4,
   },
   {
-    _id: '2',
     name: 'Help stray dogs in Argentina ',
     image: '/images/dog.png',
     description:
@@ -26,9 +25,9 @@ const products = [
     donationGoal: 41000,
     percentageDonation: 40.5,
     numReviews: 8,
+    rating: 4,
   },
   {
-    _id: '3',
     name: 'Help wildlife conservation in Zambia',
     image: '/images/lion.png',
     description:
@@ -40,9 +39,9 @@ const products = [
     donationGoal: 45000,
     percentageDonation: 77.5,
     numReviews: 12,
+    rating: 5,
   },
   {
-    _id: '4',
     name: 'Help stray cats in Greece',
     image: '/images/kitten.png',
     description:
@@ -54,9 +53,9 @@ const products = [
     donationGoal: 11000,
     percentageDonation: 86.5,
     numReviews: 12,
+    rating: 4,
   },
   {
-    _id: '5',
     name: 'Help wild horses in Spain',
     image: '/images/horse.png',
     description:
@@ -68,9 +67,9 @@ const products = [
     donationGoal: 4500,
     percentageDonation: 62,
     numReviews: 10,
+    rating: 4,
   },
   {
-    _id: '6',
     name: 'Help sea lives at risks',
     image: '/images/whale.png',
     description:
@@ -82,9 +81,9 @@ const products = [
     donationGoal: 9000,
     percentageDonation: 48,
     numReviews: 12,
+    rating: 5,
   },
   {
-    _id: '7',
     name: 'Help end farm animals being tortured',
     image: '/images/cow.png',
     description:
@@ -96,6 +95,7 @@ const products = [
     donationGoal: 67600,
     percentageDonation: 99.5,
     numReviews: 12,
+    rating: 4.5,
   },
 ]
 

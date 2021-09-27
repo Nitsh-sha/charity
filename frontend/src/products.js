@@ -12,6 +12,7 @@ const products = [
     donationGoal: 4500,
     percentageDonation: 100,
     numReviews: 12,
+    rating: 4,
   },
   {
     _id: '2',
@@ -26,6 +27,7 @@ const products = [
     donationGoal: 41000,
     percentageDonation: 40.5,
     numReviews: 8,
+    rating: 4,
   },
   {
     _id: '3',
@@ -40,6 +42,7 @@ const products = [
     donationGoal: 45000,
     percentageDonation: 77.5,
     numReviews: 12,
+    rating: 5,
   },
   {
     _id: '4',
@@ -54,6 +57,7 @@ const products = [
     donationGoal: 11000,
     percentageDonation: 86.5,
     numReviews: 12,
+    rating: 4,
   },
   {
     _id: '5',
@@ -68,6 +72,7 @@ const products = [
     donationGoal: 4500,
     percentageDonation: 62,
     numReviews: 10,
+    rating: 4,
   },
   {
     _id: '6',
@@ -82,6 +87,7 @@ const products = [
     donationGoal: 9000,
     percentageDonation: 48,
     numReviews: 12,
+    rating: 5,
   },
   {
     _id: '7',
@@ -96,6 +102,7 @@ const products = [
     donationGoal: 67600,
     percentageDonation: 99.5,
     numReviews: 12,
+    rating: 4.5,
   },
 ]
 

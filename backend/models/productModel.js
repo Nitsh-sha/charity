@@ -5,6 +5,11 @@ const reviewSchema = mongoose.Schema(
     name: { type: String, required: true },
     rating: { type: Number, required: true },
     comment: { type: String, required: true },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true,
+      ref: 'User',
+    },
   },
   {
     timestamps: true,
@@ -51,7 +56,7 @@ const productSchema = mongoose.Schema(
     },
     percentageDonation: {
       type: Number,
-      required: true,
+      required: false,
       default: 0,
     },
 
@@ -62,7 +67,7 @@ const productSchema = mongoose.Schema(
     },
     donationNeedRemain: {
       type: Number,
-      required: true,
+      required: false,
       default: 0,
     },
     donate: {

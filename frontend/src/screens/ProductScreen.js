@@ -7,6 +7,7 @@ import Percentage from '../components/Percentage'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Meta from '../components/Meta'
+import EnterToWin from '../components/EnterToWin'
 import {
   listProductDetails,
   createProductReview,
@@ -17,8 +18,38 @@ const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1)
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
+  const [countdown, setCountdown] = useState('')
 
   const dispatch = useDispatch()
+
+  // Set the date we're counting down to
+  var countDownDate = new Date('Dec 5, 2021 15:37:25').getTime()
+
+  // Update the count down every 1 second
+  var x = setInterval(function () {
+    // Get today's date and time
+    var now = new Date().getTime()
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24))
+    var hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    )
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000)
+
+    // Display the result in the element with id="demo"
+    setCountdown(days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ')
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x)
+      setCountdown('EXPIRED')
+    }
+  }, 1000)
 
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
@@ -45,7 +76,7 @@ const ProductScreen = ({ history, match }) => {
   }, [dispatch, match, successProductReview])
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
+    history.push(`/cart/${match.params.id}?qty=${qty}&entryId=dss`)
   }
 
   const submitHandler = (e) => {
@@ -100,7 +131,7 @@ const ProductScreen = ({ history, match }) => {
                 </ListGroup.Item>
               </ListGroup>
             </Col>
-            <Col md={3}>
+            <Col id='product-card' md={3}>
               <Card>
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
@@ -121,44 +152,110 @@ const ProductScreen = ({ history, match }) => {
                       </Col>
                     </Row>
                   </ListGroup.Item>
-
-                  {product.donationNeedRemain > 0 && (
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Qty</Col>
-                        <Col>
-                          <Form.Control
-                            as='select'
-                            value={qty}
-                            onChange={(e) => setQty(e.target.value)}
-                          >
-                            {[...Array(10).keys()].map((x) => (
-                              <option key={x + 1} value={x + 1}>
-                                {x + 1}
-                              </option>
-                            ))}
-                          </Form.Control>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                  )}
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Closes in:</Col>
+                      <Col>{countdown}</Col>
+                    </Row>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Winner Annouced:</Col>
+                    </Row>
+                    <Row>
+                      <Col></Col>
+                    </Row>
+                  </ListGroup.Item>
 
                   <ListGroup.Item>
-                    <Button
+                    <a
+                      href='#promo'
+                      className='btn-block btn btn-primary'
+                      type='button'
+                    >
+                      SPREAD THE JOY
+                    </a>
+                    {/* <Button
                       onClick={addToCartHandler}
                       className='btn-block'
                       type='button'
                       disabled={product.donationNeedRemain === 0}
                     >
                       SPREAD THE JOY
-                    </Button>
+                    </Button> */}
                   </ListGroup.Item>
                 </ListGroup>
               </Card>
             </Col>
+            <Col md={4}>
+              <Image src={product.image} alt={product.name} fluid />
+            </Col>
+            <Col md={5}>
+              <ListGroup variant='flush'>
+                <ListGroup.Item>
+                  <h3>{product.name}</h3>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Percentage
+                    value={product.percentageDonation}
+                    text={`$${product.donationNeedRemain} to reach our goal`}
+                  />
+                </ListGroup.Item>
+                <ListGroup.Item>Donote: ${product.donate}</ListGroup.Item>
+                <ListGroup.Item>
+                  Description: ${product.description}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  Donation Goal: ${product.donationGoal}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Rating
+                    value={product.rating}
+                    text={`${product.numReviews} reviews`}
+                  />
+                </ListGroup.Item>
+              </ListGroup>
+            </Col>
           </Row>
+
+          <Row
+            className='py-4, pt-4'
+            id='promo'
+            style={{
+              backgroundColor: 'rgba(97, 155, 138, 0.2)',
+            }}
+          >
+            <Col
+              md={{ span: 6, offset: 3 }}
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+              }}
+            >
+              <EnterToWin onClick={addToCartHandler} entries={20} price={10} />
+              <EnterToWin
+                onClick={addToCartHandler}
+                entries={125}
+                price={25}
+                promo
+              />
+              <EnterToWin onClick={addToCartHandler} entries={500} price={50} />
+              <EnterToWin
+                onClick={addToCartHandler}
+                entries={1200}
+                price={100}
+              />
+              <EnterToWin
+                onClick={addToCartHandler}
+                entries={2000}
+                price={150}
+              />
+            </Col>
+          </Row>
+
           <Row>
-            <Col md={6}>
+            <Col md={6} className='mt-4'>
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
               <ListGroup variant='flush'>
@@ -211,6 +308,7 @@ const ProductScreen = ({ history, match }) => {
                         disabled={loadingProductReview}
                         type='submit'
                         variant='primary'
+                        className='mt-3'
                       >
                         Submit
                       </Button>

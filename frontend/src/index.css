@@ -21,6 +21,9 @@ h2 {
 }
 
 /* carousel */
+.carousel-hero {
+  background-color: #619b8a !important;
+}
 .carousel-item-next,
 .carousel-item-prev,
 .carousel-item.active {
@@ -46,6 +49,25 @@ h2 {
 .carousel a {
   margin: 0 auto;
 }
+
+#basic-navbar-nav {
+  justify-content: space-between;
+}
+
+#basic-navbar-nav form {
+  display: flex !important;
+}
+
+.percentage i {
+  font-size: 2rem;
+  margin-right: 0.25rem;
+}
+
+#product-card {
+  position: sticky;
+  top: 1rem;
+}
+
 @media (max-width: 900px) {
   .carousel-caption h2 {
     font-size: 2.5vw;

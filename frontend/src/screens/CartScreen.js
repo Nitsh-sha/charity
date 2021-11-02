@@ -14,10 +14,34 @@ import {
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
+// const entryList = {
+//   entry20: {
+//     price: 10,
+//     amount: 20,
+//   },
+//   entry125: {
+//     price: 25,
+//     amount: 125,
+//   },
+//   entry500: {
+//     price: 50,
+//     amount: 500,
+//   },
+//   entry1200: {
+//     price: 100,
+//     amount: 1200,
+//   },
+//   entry2000: {
+//     price: 150,
+//     amount: 2000,
+//   },
+// }
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id
 
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
+  // const entryId = location.search ? Number(location.search.split('=')[3]) : 1
+  // console.log(location.search.split('=')[3])
 
   const dispatch = useDispatch()
 

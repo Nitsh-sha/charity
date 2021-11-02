@@ -154,7 +154,7 @@ const ProductEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId='countInStock'>
-              <Form.Label>Donation Goral</Form.Label>
+              <Form.Label>Donation Goal</Form.Label>
               <Form.Control
                 type='number'
                 placeholder='Enter donation goal'

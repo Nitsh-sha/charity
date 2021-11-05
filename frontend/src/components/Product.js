@@ -7,13 +7,13 @@ const Product = ({ product }) => {
   return (
     <Card className='my-3 p-3 rounded'>
       <Link to={`/product/${product._id}`}>
-        <Card.Img src={product.image} variant='top' />
+        <Card.Img src={product.promoImage} variant='top' />
       </Link>
 
       <Card.Body>
         <Link to={`/product/${product._id}`}>
           <Card.Title as='div'>
-            <strong>{product.name}</strong>
+            <strong>{product.promoName}</strong> <br />({product.name})
           </Card.Title>
         </Link>
 
@@ -21,7 +21,7 @@ const Product = ({ product }) => {
           <div className='my-3'>{product.numReviews} reviews</div>
         </Card.Text>
 
-        <Card.Text as='h3'>Donate ${product.donate}</Card.Text>
+        <Card.Text as='h3'>Donate from $10 and Win!</Card.Text>
         <Card.Text className='my-3' as='div'>
           <Percentage
             value={product.percentageDonation}

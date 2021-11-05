@@ -1,5 +1,9 @@
 const products = [
   {
+    promoName: 'Win a Luxurious House with a Pool',
+    promoDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    promoImage: '/images/promoElephant.png',
     name: 'Help Elephants in Burma',
     image: '/images/elephant.png',
     description:
@@ -8,12 +12,16 @@ const products = [
     category: 'Wildlife',
     donate: 10,
     donationNeedRemain: 0,
-    donationGoal: 4500,
+    donationGoal: 544500,
     percentageDonation: 100,
     numReviews: 12,
     rating: 4,
   },
   {
+    promoName: 'Win a Bugatti Car',
+    promoDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    promoImage: '/images/promoDog.png',
     name: 'Help stray dogs in Argentina ',
     image: '/images/dog.png',
     description:
@@ -22,12 +30,16 @@ const products = [
     category: 'Stray animals',
     donate: 5,
     donationNeedRemain: 4600,
-    donationGoal: 41000,
+    donationGoal: 541000,
     percentageDonation: 40.5,
     numReviews: 8,
     rating: 4,
   },
   {
+    promoName: 'Win a Cozy & Luxury Home',
+    promoDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    promoImage: '/images/promoLion.png',
     name: 'Help wildlife conservation in Zambia',
     image: '/images/lion.png',
     description:
@@ -36,12 +48,16 @@ const products = [
     category: 'Wildlife',
     donate: 10,
     donationNeedRemain: 7000,
-    donationGoal: 45000,
+    donationGoal: 445000,
     percentageDonation: 77.5,
     numReviews: 12,
     rating: 5,
   },
   {
+    promoName: 'Win an 5-star Exclusive Getaway',
+    promoDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    promoImage: '/images/promoKitten.png',
     name: 'Help stray cats in Greece',
     image: '/images/kitten.png',
     description:
@@ -50,12 +66,16 @@ const products = [
     category: 'Stray animals',
     donate: 15,
     donationNeedRemain: 3400,
-    donationGoal: 11000,
+    donationGoal: 411000,
     percentageDonation: 86.5,
     numReviews: 12,
     rating: 4,
   },
   {
+    promoName: 'Win a Porsche',
+    promoDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    promoImage: '/images/promoHorse.png',
     name: 'Help wild horses in Spain',
     image: '/images/horse.png',
     description:
@@ -64,12 +84,16 @@ const products = [
     category: 'Wildlife',
     donate: 5,
     donationNeedRemain: 320,
-    donationGoal: 4500,
+    donationGoal: 114500,
     percentageDonation: 62,
     numReviews: 10,
     rating: 4,
   },
   {
+    promoName: 'Win a Luxurious City House',
+    promoDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    promoImage: '/images/promoWhale.png',
     name: 'Help sea lives at risks',
     image: '/images/whale.png',
     description:
@@ -77,13 +101,17 @@ const products = [
     charity: 'Sea Lovers',
     category: 'Wildlife',
     donate: 15,
-    donationNeedRemain: 6500,
+    donationNeedRemain: 106500,
     donationGoal: 9000,
     percentageDonation: 48,
     numReviews: 12,
     rating: 5,
   },
   {
+    promoName: 'Win Luxurious Beach Vacation',
+    promoDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    promoImage: '/images/promoCow.png',
     name: 'Help end farm animals being tortured',
     image: '/images/cow.png',
     description:

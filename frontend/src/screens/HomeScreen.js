@@ -35,7 +35,7 @@ const HomeScreen = ({ match }) => {
         </Link>
       )}
       <Container>
-        <h1>Latest Charity</h1>
+        <h1>Latest Prizes and Charities</h1>
         {loading ? (
           <Loader />
         ) : error ? (

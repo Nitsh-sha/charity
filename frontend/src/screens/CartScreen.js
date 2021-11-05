@@ -14,34 +14,36 @@ import {
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
-// const entryList = {
-//   entry20: {
-//     price: 10,
-//     amount: 20,
-//   },
-//   entry125: {
-//     price: 25,
-//     amount: 125,
-//   },
-//   entry500: {
-//     price: 50,
-//     amount: 500,
-//   },
-//   entry1200: {
-//     price: 100,
-//     amount: 1200,
-//   },
-//   entry2000: {
-//     price: 150,
-//     amount: 2000,
-//   },
-// }
+const entryList = {
+  entry20: {
+    price: 10,
+    amount: 20,
+  },
+  entry125: {
+    price: 25,
+    amount: 125,
+  },
+  entry500: {
+    price: 50,
+    amount: 500,
+  },
+  entry1200: {
+    price: 100,
+    amount: 1200,
+  },
+  entry2000: {
+    price: 150,
+    amount: 2000,
+  },
+}
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id
 
-  const qty = location.search ? Number(location.search.split('=')[1]) : 1
-  // const entryId = location.search ? Number(location.search.split('=')[3]) : 1
-  // console.log(location.search.split('=')[3])
+  const qty = location.search ? Number(location.search.split('=')[1][0]) : 1
+  const entryId = location.search.split('=')[2]
+  console.log(location.search.split('=')[2])
+  console.log(entryList[entryId])
+  console.log(qty)
 
   const dispatch = useDispatch()
 
@@ -79,10 +81,11 @@ const CartScreen = ({ match, location, history }) => {
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
-                  <Col md={3}>
+                  <Col md={2}>
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
-                  <Col md={2}>${item.donate}</Col>
+                  <Col md={1}>${entryList[entryId].price}</Col>
+                  <Col md={2}>Entries: {entryList[entryId].amount}</Col>
                   <Col md={2}>
                     <Form.Control
                       as='select'
@@ -125,8 +128,17 @@ const CartScreen = ({ match, location, history }) => {
               </h2>
               $
               {cartItems
-                .reduce((acc, item) => acc + item.qty * item.donate, 0)
+                .reduce(
+                  (acc, item) => acc + item.qty * entryList[entryId].price,
+                  0
+                )
                 .toFixed(2)}
+              <br />
+              Total entries:{' '}
+              {cartItems.reduce(
+                (acc, item) => acc + item.qty * entryList[entryId].amount,
+                0
+              )}
             </ListGroup.Item>
             <ListGroup.Item>
               <Button

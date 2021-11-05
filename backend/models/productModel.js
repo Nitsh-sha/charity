@@ -31,9 +31,17 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    promoImage: {
+      type: String,
+      required: false,
+    },
     charity: {
       type: String,
       required: true,
+    },
+    promoName: {
+      type: String,
+      required: false,
     },
     category: {
       type: String,
@@ -42,6 +50,10 @@ const productSchema = mongoose.Schema(
     description: {
       type: String,
       required: true,
+    },
+    promoDescription: {
+      type: String,
+      required: false,
     },
     reviews: [reviewSchema],
     rating: {

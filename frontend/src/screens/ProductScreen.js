@@ -75,8 +75,8 @@ const ProductScreen = ({ history, match }) => {
     }
   }, [dispatch, match, successProductReview])
 
-  const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}&entryId=dss`)
+  const addToCartHandler = (type) => {
+    history.push(`/cart/${match.params.id}?qty=1&entryId=${type}`)
   }
 
   const submitHandler = (e) => {
@@ -100,34 +100,24 @@ const ProductScreen = ({ history, match }) => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          <Meta title={product.name} />
+          <Meta title={product.promoName} />
           <Row>
             <Col md={4}>
-              <Image src={product.image} alt={product.name} fluid />
+              <Image
+                id='promo-image'
+                src={product.promoImage}
+                alt={product.promoName}
+                fluid
+              />
             </Col>
             <Col md={5}>
               <ListGroup variant='flush'>
                 <ListGroup.Item>
-                  <h3>{product.name}</h3>
+                  <h3>{product.promoName}</h3>
                 </ListGroup.Item>
+                <ListGroup.Item>Donote from $10 to win!</ListGroup.Item>
                 <ListGroup.Item>
-                  <Percentage
-                    value={product.percentageDonation}
-                    text={`$${product.donationNeedRemain} to reach our goal`}
-                  />
-                </ListGroup.Item>
-                <ListGroup.Item>Donote: ${product.donate}</ListGroup.Item>
-                <ListGroup.Item>
-                  Description: ${product.description}
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  Donation Goal: ${product.donationGoal}
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Rating
-                    value={product.rating}
-                    text={`${product.numReviews} reviews`}
-                  />
+                  Description: {product.promoDescription}
                 </ListGroup.Item>
               </ListGroup>
             </Col>
@@ -136,9 +126,9 @@ const ProductScreen = ({ history, match }) => {
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Donate:</Col>
+                      <Col>Donate from:</Col>
                       <Col>
-                        <strong>${product.donate}</strong>
+                        <strong>$10</strong>
                       </Col>
                     </Row>
                   </ListGroup.Item>
@@ -158,14 +148,6 @@ const ProductScreen = ({ history, match }) => {
                       <Col>{countdown}</Col>
                     </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item>
-                    <Row>
-                      <Col>Winner Annouced:</Col>
-                    </Row>
-                    <Row>
-                      <Col></Col>
-                    </Row>
-                  </ListGroup.Item>
 
                   <ListGroup.Item>
                     <a
@@ -175,25 +157,22 @@ const ProductScreen = ({ history, match }) => {
                     >
                       SPREAD THE JOY
                     </a>
-                    {/* <Button
-                      onClick={addToCartHandler}
-                      className='btn-block'
-                      type='button'
-                      disabled={product.donationNeedRemain === 0}
-                    >
-                      SPREAD THE JOY
-                    </Button> */}
                   </ListGroup.Item>
                 </ListGroup>
               </Card>
             </Col>
             <Col md={4}>
-              <Image src={product.image} alt={product.name} fluid />
+              <Image
+                id='product-image'
+                src={product.image}
+                alt={product.name}
+                fluid
+              />
             </Col>
             <Col md={5}>
               <ListGroup variant='flush'>
                 <ListGroup.Item>
-                  <h3>{product.name}</h3>
+                  <h3 id='product-name'>{product.name}</h3>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Percentage
@@ -233,21 +212,29 @@ const ProductScreen = ({ history, match }) => {
                 justifyContent: 'center',
               }}
             >
-              <EnterToWin onClick={addToCartHandler} entries={20} price={10} />
               <EnterToWin
-                onClick={addToCartHandler}
+                onClick={() => addToCartHandler('entry20')}
+                entries={20}
+                price={10}
+              />
+              <EnterToWin
+                onClick={() => addToCartHandler('entry125')}
                 entries={125}
                 price={25}
                 promo
               />
-              <EnterToWin onClick={addToCartHandler} entries={500} price={50} />
               <EnterToWin
-                onClick={addToCartHandler}
+                onClick={() => addToCartHandler('entry500')}
+                entries={500}
+                price={50}
+              />
+              <EnterToWin
+                onClick={() => addToCartHandler('entry1200')}
                 entries={1200}
                 price={100}
               />
               <EnterToWin
-                onClick={addToCartHandler}
+                onClick={() => addToCartHandler('entry2000')}
                 entries={2000}
                 price={150}
               />

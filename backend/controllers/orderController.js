@@ -33,12 +33,22 @@ const addOrderItems = asyncHandler(async (req, res) => {
     })
 
     const createdOrder = await order.save()
-
-    order.orderItems.forEach(async (item) => {
-      let productItem = Product.findById(item._id)
-      productItem.donationNeedRemain += item.donate * item.qty
-      const productItemUpdate = await productItem.save()
-      console.log(productItemUpdate)
+    console.log(orderItems)
+    orderItems.forEach(async (item) => {
+      let productItem = Product.findOneAndUpdate(
+        { _id: item.product },
+        {
+          donationNeedRemain: item.donationNeedRemain + item.donate * item.qty,
+        },
+        { upsert: false },
+        function (errors, doc) {
+          console.log(errors)
+          console.log(doc)
+        }
+      )
+      // productItem.donationNeedRemain += item.donate * item.qty
+      // const productItemUpdate = await productItem.save()
+      // console.log(productItemUpdate)
     })
 
     res.status(201).json(createdOrder)

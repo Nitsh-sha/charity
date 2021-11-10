@@ -24,8 +24,10 @@ const Product = ({ product }) => {
         <Card.Text as='h3'>Donate from $10 and Win!</Card.Text>
         <Card.Text className='my-3' as='div'>
           <Percentage
-            value={product.percentageDonation}
-            text={`$${product.donationNeedRemain} to reach our goal`}
+            value={(product.donationNeedRemain / product.donationGoal) * 100}
+            text={`$${
+              product.donationGoal - product.donationNeedRemain
+            } to reach our goal`}
           />
         </Card.Text>
         <Card.Text as='div'>Donation goal ${product.donationGoal}</Card.Text>

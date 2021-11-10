@@ -84,7 +84,7 @@ const productSchema = mongoose.Schema(
     },
     donate: {
       type: Number,
-      required: true,
+      required: false,
       default: 0,
     },
   },

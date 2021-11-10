@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
+import Product from '../models/productModel.js'
 
 // @desc    Create new order
 // @route   POST /api/orders
@@ -32,6 +33,13 @@ const addOrderItems = asyncHandler(async (req, res) => {
     })
 
     const createdOrder = await order.save()
+
+    order.orderItems.forEach(async (item) => {
+      let productItem = Product.findById(item._id)
+      productItem.donationNeedRemain += item.donate * item.qty
+      const productItemUpdate = await productItem.save()
+      console.log(productItemUpdate)
+    })
 
     res.status(201).json(createdOrder)
   }
@@ -69,9 +77,13 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
       update_time: req.body.update_time,
       email_address: req.body.payer.email_address,
     }
-
+    // order.orderItems.forEach((item) => {
+    //   let productItem = Product.findById(item._id)
+    //   productItem.donationNeedRemain += item.donate * item.qty
+    //   productItem.save()
+    // })
     const updatedOrder = await order.save()
-    
+
     res.json(updatedOrder)
   } else {
     res.status(404)

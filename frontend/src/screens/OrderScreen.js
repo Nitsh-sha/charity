@@ -42,7 +42,7 @@ const OrderScreen = ({ match, history }) => {
     }
 
     order.itemsPrice = addDecimals(
-      order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+      order.orderItems.reduce((acc, item) => acc + item.donate * item.qty, 0)
     )
   }
 
@@ -156,7 +156,8 @@ const OrderScreen = ({ match, history }) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty} x ${item.donate} = $
+                          {item.qty * item.donate}
                         </Col>
                       </Row>
                     </ListGroup.Item>

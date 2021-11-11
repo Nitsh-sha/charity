@@ -13,12 +13,14 @@ const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id
 
   const [name, setName] = useState('')
-  const [donate, setDonate] = useState(0)
+  const [promoName, setPromoName] = useState('')
   const [image, setImage] = useState('')
+  const [promoImage, setPromoImage] = useState('')
   const [charity, setCharity] = useState('')
   const [category, setCategory] = useState('')
   const [donationGoal, setDonationGoal] = useState(0)
   const [description, setDescription] = useState('')
+  const [promoDescription, setPromoDescription] = useState('')
   const [uploading, setUploading] = useState(false)
 
   const dispatch = useDispatch()
@@ -42,12 +44,14 @@ const ProductEditScreen = ({ match, history }) => {
         dispatch(listProductDetails(productId))
       } else {
         setName(product.name)
-        setDonate(product.donate)
+        setPromoName(product.promoName)
         setImage(product.image)
+        setPromoImage(product.promoImage)
         setCharity(product.charity)
         setCategory(product.category)
         setDonationGoal(product.donationGoal)
         setDescription(product.description)
+        setPromoDescription(product.promoDescription)
       }
     }
   }, [dispatch, history, productId, product, successUpdate])
@@ -75,17 +79,42 @@ const ProductEditScreen = ({ match, history }) => {
     }
   }
 
+  const uploadFilePromoHandler = async (e) => {
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+
+      const { data } = await axios.post('/api/upload', formData, config)
+
+      setPromoImage(data)
+      setUploading(false)
+    } catch (error) {
+      console.error(error)
+      setUploading(false)
+    }
+  }
+
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(
       updateProduct({
         _id: productId,
         name,
-        donate,
+        promoName,
         image,
+        promoImage,
         charity,
         category,
         description,
+        promoDescription,
         donationGoal,
       })
     )
@@ -116,13 +145,13 @@ const ProductEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='price'>
-              <Form.Label>Donate</Form.Label>
+            <Form.Group controlId='promoName'>
+              <Form.Label>Name</Form.Label>
               <Form.Control
-                type='number'
-                placeholder='Enter price'
-                value={donate}
-                onChange={(e) => setDonate(e.target.value)}
+                type='name'
+                placeholder='Enter prize name'
+                value={promoName}
+                onChange={(e) => setPromoName(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -143,7 +172,24 @@ const ProductEditScreen = ({ match, history }) => {
               {uploading && <Loader />}
             </Form.Group>
 
-            <Form.Group controlId='brand'>
+            <Form.Group controlId='promoImage'>
+              <Form.Label>Prize Image</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter image url'
+                value={image}
+                onChange={(e) => setPromoImage(e.target.value)}
+              ></Form.Control>
+              <Form.File
+                id='image-file'
+                label='Choose File'
+                custom
+                onChange={uploadFilePromoHandler}
+              ></Form.File>
+              {uploading && <Loader />}
+            </Form.Group>
+
+            <Form.Group controlId='charity'>
               <Form.Label>Charity</Form.Label>
               <Form.Control
                 type='text'
@@ -153,12 +199,12 @@ const ProductEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='countInStock'>
+            <Form.Group controlId='donationGoal'>
               <Form.Label>Donation Goal</Form.Label>
               <Form.Control
                 type='number'
                 placeholder='Enter donation goal'
-                value={setDonationGoal}
+                value={donationGoal}
                 onChange={(e) => setDonationGoal(e.target.value)}
               ></Form.Control>
             </Form.Group>
@@ -180,6 +226,16 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder='Enter description'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='promoDescription'>
+              <Form.Label>Prize Description</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter prize description'
+                value={promoDescription}
+                onChange={(e) => setPromoDescription(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
